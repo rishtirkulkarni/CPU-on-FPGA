@@ -15,7 +15,7 @@ module pc(
     
     always@(posedge clk)begin
         if(reset)
-            out <= 16'b 000000000000;
+            out <= 16'b0000000000000000;
         else if(load)
             out <= in;
         else if(inc)
