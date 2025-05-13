@@ -1,3 +1,7 @@
+// Rishti  
+// 11-05-20205
+// Continuously fills screen with black if key is pressed, or white otherwise
+
 (START)
     @KBD
     D=M              // Read keyboard input
