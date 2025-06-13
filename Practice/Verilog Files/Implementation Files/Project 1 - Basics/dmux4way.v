@@ -12,10 +12,10 @@ module demux4way(
 
 always @(*) begin
     case (sel)
-        2'b00: begin a = in; b = 0; c = 0; d = 0; end
-        2'b01: begin a = 0; b = in; c = 0; d = 0; end
-        2'b10: begin a = 0; b = 0; c = in; d = 0; end
-        2'b11: begin a = 0; b = 0; c = 0; d = in; end
+        2'b00: a = in;
+        2'b01: b = in;
+        2'b10: c = in;
+        2'b11: d = in;
     endcase
 end
 
