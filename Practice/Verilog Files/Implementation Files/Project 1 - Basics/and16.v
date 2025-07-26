@@ -1,10 +1,14 @@
 `timescale 1ns / 1ps
-// Create Date: 03/26/2025 10:31:26 AM
-// Design Name: 16 bit And gate
-// Module Name: and16
-// Description: Created by Rishti
-
-
+// Create Date: 03/24/2025 05:15:48 PM
+// File: and_gate.v
+// Description: Behavioral implementation of a 16-bit AND gate.
+//              Performs bitwise AND operation across each bit.
+// Inputs:
+//    a, b   - 16-bit inputs
+// Outputs:
+//    y      - 16-bit output where each bit is 1 only if both inputs' bits are 1
+// Created by Rishti
+// Notes: Uses a for loop to implement bitwise AND across all 16 bits.
 
 module and16(
     input wire [15:0] a,
@@ -12,14 +16,15 @@ module and16(
     output reg [15:0] y
     );
     
-    integer i;
+    integer i; // Loop variable for iterating through bits
     
     always @(*) begin
-        for (i=0; i<16; i=i+1) begin
+        // Iterate through each bit and perform AND operation
+        for (i=0; i<16; i=i+1) begin 
             if (a[i] == 1'b1 && b[i] == 1'b1)
-                y[i] = 1'b1;
+                y[i] = 1'b1; // Set bit if both inputs are 1
             else
-                y[i] = 1'b0;
+                y[i] = 1'b0; // Otherwise, clears bit
         end
     end
 endmodule
