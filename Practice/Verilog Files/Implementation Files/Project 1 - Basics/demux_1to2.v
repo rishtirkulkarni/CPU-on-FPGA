@@ -1,9 +1,13 @@
 `timescale 1ns / 1ps
  
 // Create Date: 03/25/2025 08:32:06 PM
-// Design Name: Dexmux 1 to 2
-// Module Name: demux_1to2
- // Description: Created by Rishti
+// File: demux-1to2.v
+// Description: Behavioral description of 1-to-2 demultiplexer
+//              Routes a single input to two different outputs based on a 1-bit select signal
+// Input: in (1-bit)
+//        sel (1-bit select line)
+// Outputs: a,b - 1-bit outputs (Only active at a time)
+// Created by Rishti
 
 
 
