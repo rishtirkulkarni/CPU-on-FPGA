@@ -1,8 +1,12 @@
 `timescale 1ns / 1ps 
 // Create Date: 03/25/2025 08:02:53 PM
-// Design Name: EXOR gate
-// Module Name: xor_gate 
-// Description: Created by Rishti
+// File: xor_gate.v
+// Description: Behavioral implementation of a 1-bit XOR gate.
+// Inputs:
+//    a, b   - Single-bit inputs
+// Outputs:
+//    y      - Output (1 if exactly one input is high)
+// Created by Rishti
 
 
 module xor_gate(
