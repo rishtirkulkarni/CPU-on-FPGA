@@ -14,12 +14,7 @@ module half_adder(
     );
     
     always @(*)begin
-        if (a == b)begin
-            sum = 0;
-            c_out = (a&b);
-        end else begin
-            sum = 1;
-            c_out = 0;
-        end     
+        sum = a ^ b;
+        c_out = a & b;
     end
 endmodule
