@@ -12,17 +12,7 @@ module full_adder(
     );
     
     always @(*) begin
-        if ((a + b + c_in) == 1 || (a + b + c_in) == 3)
-            sum = 1;
-        else
-            sum = 0;
-    end
-   
-    always @(*) begin
-        if ((a & b) || (a & c_in) || (b & c_in))
-            c_out = 1;
-        else 
-            c_out = 0;
+       {c_out, sum} = a + b + c_in;
     end
 
 endmodule
