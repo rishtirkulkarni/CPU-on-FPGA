@@ -39,7 +39,7 @@ It translates the concepts from *The Elements of Computing Systems* into synthes
 
 ## Acknowledgments
 - **MARVEL UVCE** – [https://hub.uvcemarvel.in](https://hub.uvcemarvel.in)
-- Mentor: **Anish Krishnakumar** [https://github.com/anishk2]
-- Peers: **A V Sohan Aiyappa** [https://github.com/AV-Sohan-Aiyappa], **Virajit G P** [https://github.com/virajitgp]
+- **Mentor**: **Anish Krishnakumar** [https://github.com/anishk2]
+- **Peers**: **A V Sohan Aiyappa** [https://github.com/AV-Sohan-Aiyappa], **Virajit G P** [https://github.com/virajitgp]
 - **Noam Nisan & Shimon Schocken** – Creators of the Nand2Tetris course  
 
