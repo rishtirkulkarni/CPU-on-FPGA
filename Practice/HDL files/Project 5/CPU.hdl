@@ -1,0 +1,89 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/5/CPU.hdl
+/**
+ * The Hack Central Processing unit (CPU).
+ * Parses the binary code in the instruction input and executes it according to the
+ * Hack machine language specification. In the case of a C-instruction, computes the
+ * function specified by the instruction. If the instruction specifies to read a memory
+ * value, the inM input is expected to contain this value. If the instruction specifies
+ * to write a value to the memory, sets the outM output to this value, sets the addressM
+ * output to the target address, and asserts the writeM output (when writeM = 0, any
+ * value may appear in outM).
+ * If the reset input is 0, computes the address of the next instruction and sets the
+ * pc output to that value. If the reset input is 1, sets pc to 0.
+ * Note: The outM and writeM outputs are combinational: they are affected by the
+ * instruction's execution during the current cycle. The addressM and pc outputs are
+ * clocked: although they are affected by the instruction's execution, they commit to
+ * their new values only in the next cycle.
+ */
+CHIP CPU {
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset==1) or continue executing
+                         // the current program (reset==0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write to M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+    PARTS:
+    //Muxes
+	Mux16(a=ALUout , b=instruction , sel=instsel , out=ARegin); //Instruction Mux
+    Mux16(a=ARegout , b=inM , sel=insel , out=ALUin2 ); //Input Mux
+    //Registers
+    ARegister(in=ARegin , load=loadA , out=ARegout, out[0..14]=addressM );
+    DRegister(in=ALUout , load=loadD , out=DRegout );
+    //The ALU
+    ALU(x=DRegout , y=ALUin2 , zx=instruction[11] , nx=instruction[10] , zy=instruction[9] , ny=instruction[8] , f=instruction[7] , no=instruction[6] , out=outM, out=ALUout, zr=zr , ng=ng );
+    //PC
+    PC(in=ARegout , load=loadPC , inc=true , reset=reset , out[0..14]=pc );
+    //Control logic for Muxes and Registers
+        //instsel logic for Instruction Mux
+        Not(in=instruction[15] , out=instsel );
+        //insel logic for Input Mux
+        And(a=instruction[15] , b=instruction[12] , out=insel );
+        //Load logic for ARegister
+        Or(a=instsel , b=instruction[5] , out=loadA );
+        //Load logic for DRegister
+        And(a=instruction[15] , b=instruction[4] , out=loadD );
+    //loadPC Logic
+        //JGT Condition
+        Or(a=zr , b=ng , out=orres );
+        Not(in=orres , out=posnum );
+        And(a=instruction[0] , b=posnum , out=JGT );
+
+        //JEQ Condition
+        And(a=instruction[1] , b=zr , out=JEQ );
+
+        //JLT Condition
+        And(a=instruction[2] , b=ng , out=JLT );
+
+        //JGE Condition
+        Or(a=JGT , b=JEQ , out=JGE );
+        
+        //JNE Condition
+        Or(a=JGT , b=JLT , out=JNE );
+
+        //JLE Condition
+        Or(a=JGT , b=JEQ , out=JLE );
+
+        //JMP Condition
+        Or(a=JLE , b=JGT , out=JMP );
+
+        Or(a=JGT , b=JEQ , out=J1 );
+        Or(a=J1 , b=JGE , out=J2 );
+        Or(a=J2 , b=JLT , out=J3 );
+        Or(a=J3 , b=JNE , out=J4 );
+        Or(a=J4 , b=JLE , out=J5 );
+        Or(a=J5 , b=JMP , out=J6 );
+
+        And(a=instruction[15] , b=J6 , out=loadPC );
+
+    //writeM logic
+    And(a=instruction[15] , b=instruction[3] , out=writeM );  
+}
