@@ -1,35 +1,18 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
 // Create Date: 08/30/2025 09:20:50 AM
-// Design Name: 
-// Module Name: ALU_FPGA
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
+// Module Name: ALU_FPGA 
+// Target Devices: Basys 3 Artix 7 FPGA
 
 module ALU_FPGA(
     input clk,
     input zx, nx, zy, ny, f, no, initialise,
     input [4:0] address_a, address_b,
     output [15:0] result,
-    output zr, ng,
     output [6:0] seg,
     output [3:0] an
     );
-        
+
+    wire zr,ng;
     //memory locations to store operands a and b
     reg [15:0] mem_locations_a [0:31];
     reg [15:0] mem_locations_b [0:31];
@@ -37,7 +20,7 @@ module ALU_FPGA(
     //precoding values into memory locations
     always@(posedge clk)begin
         if(initialise)begin
-            // ====== mem_locations_a ======
+            //mem_locations_a 
             mem_locations_a[0]  <= 16'b0000000000000000; // 0
             mem_locations_a[1]  <= 16'b0000000000000001; // 1
             mem_locations_a[2]  <= 16'b0000000000000010; // 2
@@ -73,7 +56,7 @@ module ALU_FPGA(
             mem_locations_a[30] <= 16'b0111000011110000; // mixed half
             mem_locations_a[31] <= 16'b1111111100000001; // mostly 1s edge
     
-            // ====== mem_locations_b (same values) ======
+            //mem_locations_b (same values)
             mem_locations_b[0]  <= 16'b0000000000000000;
             mem_locations_b[1]  <= 16'b0000000000000001;
             mem_locations_b[2]  <= 16'b0000000000000010;
@@ -119,7 +102,8 @@ module ALU_FPGA(
         .out(result),
         .zr(zr), .ng(ng)    
     );
-    
+
+    // Segmented display interfacing module instantiation
     display_flags disp(
         .clk(clk),
         .zr(zr),
