@@ -46,14 +46,14 @@ It translates the concepts from *The Elements of Computing Systems* into synthes
 ---
 
 ## Hierarchy of the Design 
-  **Computer**
-    **CPU**
-      **ALU**
-      **PC**
-    **ROM**
-    **Memory**
-      **RAM16K**
+  -**Computer**
+    -**CPU**
+      -**ALU**
+      -**PC**
+    -**ROM**
+    -**Memory**
+      -**RAM16K**
 
 ---
 
-![Block Diagram](D:\NOTES\FPGA/Computer Block Diagram Draft2.png)
+
