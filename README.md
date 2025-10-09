@@ -57,5 +57,4 @@ It translates the concepts from *The Elements of Computing Systems* into synthes
 ---
 
 ## Block Diagram
-![Block Diagram](Practice/Implementation_Drafts/Computer_Implementation/Computer_Block_Diagram_Draft2.png)
 
