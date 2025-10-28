@@ -39,7 +39,7 @@ module computer(
     // 3. Data memory (RAM16K for now)
     
     wire [15:0] inMT, outMT;
-    wire writeMTt;
+    wire writeMT;
     wire [14:0] addressMT;
 
     memory inst_mem (
