@@ -51,10 +51,11 @@ It translates the concepts from *The Elements of Computing Systems* into synthes
       - **ALU**
       - **PC**
     - **ROM**
-    - **Memory**
-      - **RAM16K**
+    - **RAM16K**
+    - **Debouncers**
 
 ---
 
 ## Block Diagram
+<img width="3280" height="1500" alt="final_computer block diagram" src="https://github.com/user-attachments/assets/25c0b07c-fc3e-472a-854e-157b9412c04f" />
 
