@@ -50,8 +50,8 @@ It translates the concepts from *The Elements of Computing Systems* into synthes
     - **CPU**
       - **ALU**
       - **PC**
-    - **ROM**
-    - **RAM16K**
+    - **ROM32K**
+    - **Data Memory**
     - **Debouncers**
 
 ---
